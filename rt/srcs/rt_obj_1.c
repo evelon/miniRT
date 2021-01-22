@@ -6,7 +6,7 @@
 /*   By: jolim <jolim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 14:56:01 by jolim             #+#    #+#             */
-/*   Updated: 2021/01/20 14:44:35 by jolim            ###   ########.fr       */
+/*   Updated: 2021/01/22 17:35:57 by jolim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ double	distance_ray_ray(t_ray *line1, t_ray *line2)
 
 t_vec	foot_point_ray(t_vec point_a, t_vec origin, t_vec direction)
 {
-	return (v_add(origin, v_mul(v_unit(direction), v_dot(v_sub(point_a, origin), v_unit(direction)))));
+	return (v_add(origin, v_mul(v_unit(direction), \
+			v_dot(v_sub(point_a, origin), v_unit(direction)))));
 }
 
 double	distance_points(t_vec p1, t_vec p2)

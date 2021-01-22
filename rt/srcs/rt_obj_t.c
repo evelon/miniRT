@@ -6,7 +6,7 @@
 /*   By: jolim <jolim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:22:49 by jolim             #+#    #+#             */
-/*   Updated: 2021/01/22 17:22:51 by jolim            ###   ########.fr       */
+/*   Updated: 2021/01/22 17:36:30 by jolim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 double	ray_sphere_t(t_ray *ray, t_sphere *sphere)
 {
-	t_vec 	oc;
+	t_vec	oc;
 	double	a;
 	double	b;
 	double	c;
@@ -46,7 +46,6 @@ double	ray_plane_t(t_ray *ray, t_plane *plane)
 			v_dot(ray->direction, plane->ori_v);
 	if (t_value <= 0.0)
 		return (__DBL_MAX__);
-
 	return (t_value);
 }
 

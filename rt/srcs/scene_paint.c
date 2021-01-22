@@ -6,7 +6,7 @@
 /*   By: jolim <jolim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:02:16 by jolim             #+#    #+#             */
-/*   Updated: 2021/01/22 15:27:31 by jolim            ###   ########.fr       */
+/*   Updated: 2021/01/22 17:36:59 by jolim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,19 @@ static t_color	paint_pixel(int i, int j)
 	ray = new_ray_cam(i, j);
 	v_color = trace_ray(ray);
 	free(ray);
-	// ray = new_ray_cam((double)i + x, (double)j + y);
-	// v_color = v_add(v_color, trace_ray(ray));
-	// free(ray);
-	// ray = new_ray_cam((double)i - x, (double)j - y);
-	// v_color = v_add(v_color, trace_ray(ray));
-	// free(ray);
-	// ray = new_ray_cam((double)i - y, (double)j + x);
-	// v_color = v_add(v_color, trace_ray(ray));
-	// free(ray);
-	// ray = new_ray_cam((double)i + y, (double)j - x);
-	// free(ray);
-	// v_color = v_add(v_color, trace_ray(ray));
-	// v_color = v_div(v_color, 5);
+	ray = new_ray_cam((double)i + x, (double)j + y);
+	v_color = v_add(v_color, trace_ray(ray));
+	free(ray);
+	ray = new_ray_cam((double)i - x, (double)j - y);
+	v_color = v_add(v_color, trace_ray(ray));
+	free(ray);
+	ray = new_ray_cam((double)i - y, (double)j + x);
+	v_color = v_add(v_color, trace_ray(ray));
+	free(ray);
+	ray = new_ray_cam((double)i + y, (double)j - x);
+	free(ray);
+	v_color = v_add(v_color, trace_ray(ray));
+	v_color = v_div(v_color, 5);
 	return (vec_to_color(v_color));
 }
 

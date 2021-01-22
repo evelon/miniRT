@@ -6,7 +6,7 @@
 /*   By: jolim <jolim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 16:49:20 by jolim             #+#    #+#             */
-/*   Updated: 2021/01/22 16:04:35 by jolim            ###   ########.fr       */
+/*   Updated: 2021/01/22 17:34:34 by jolim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ int		main(int ac, char **av)
 	if ((fd = open(av[1], O_RDONLY)) < 3)
 		return (perror_exit("Failed to read file"));
 	ft_parse_scene(fd);
-	image.img = mlx_new_image((g_mlx = mlx_init()), g_width, g_height);
+	g_mlx = mlx_init();
+	image.img = mlx_new_image(g_mlx, g_width, g_height);
 	image.data_addr = (int *)mlx_get_data_addr(image.img, \
 			&image.bits_per_pixel, &image.size_line, &image.endian);
 	if (ac == 3 && save_check(av[2]))
