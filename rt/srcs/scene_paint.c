@@ -6,7 +6,7 @@
 /*   By: jolim <jolim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:02:16 by jolim             #+#    #+#             */
-/*   Updated: 2021/01/22 17:36:59 by jolim            ###   ########.fr       */
+/*   Updated: 2021/01/22 18:04:14 by jolim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,8 @@ static t_color	paint_pixel(int i, int j)
 
 	x = 0.25 * cos(30) - 0.25 * sin(30);
 	y = 0.25 * cos(30) + 0.25 * sin(30);
-	ray = new_ray_cam(i, j);
-	v_color = trace_ray(ray);
-	free(ray);
 	ray = new_ray_cam((double)i + x, (double)j + y);
-	v_color = v_add(v_color, trace_ray(ray));
+	v_color = trace_ray(ray);
 	free(ray);
 	ray = new_ray_cam((double)i - x, (double)j - y);
 	v_color = v_add(v_color, trace_ray(ray));
@@ -91,7 +88,7 @@ static t_color	paint_pixel(int i, int j)
 	ray = new_ray_cam((double)i + y, (double)j - x);
 	free(ray);
 	v_color = v_add(v_color, trace_ray(ray));
-	v_color = v_div(v_color, 5);
+	v_color = v_div(v_color, 4);
 	return (vec_to_color(v_color));
 }
 

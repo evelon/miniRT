@@ -6,14 +6,13 @@
 /*   By: jolim <jolim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:37:50 by jolim             #+#    #+#             */
-/*   Updated: 2021/01/18 19:10:28 by jolim            ###   ########.fr       */
+/*   Updated: 2021/01/22 17:57:55 by jolim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
 
-double	ray_cylinder_quad(t_ray *ray, t_cylinder *cylinder, double *a, \
-		double *b, double *c)
+double	ray_cylinder_quad(t_ray *ray, t_cylinder *cylinder, t_vec *a)
 {
 	t_vec	v;
 	t_vec	w;
@@ -22,9 +21,9 @@ double	ray_cylinder_quad(t_ray *ray, t_cylinder *cylinder, double *a, \
 	v = v_unit(ray->direction);
 	w = v_sub(ray->origin, cylinder->center);
 	h = cylinder->ori_v;
-	*a = v_dot(v, v) - pow(v_dot(v, h), 2);
-	*b = 2 * (v_dot(v, w) - v_dot(v, h) * v_dot(w, h));
-	*c = v_dot(w, w) - pow(v_dot(w, h), 2) - pow(cylinder->radius, 2);
+	a->x = v_dot(v, v) - pow(v_dot(v, h), 2);
+	a->y = 2 * (v_dot(v, w) - v_dot(v, h) * v_dot(w, h));
+	a->z = v_dot(w, w) - pow(v_dot(w, h), 2) - pow(cylinder->radius, 2);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jolim <jolim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:22:49 by jolim             #+#    #+#             */
-/*   Updated: 2021/01/22 17:36:30 by jolim            ###   ########.fr       */
+/*   Updated: 2021/01/22 17:58:40 by jolim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,17 @@ double	ray_plane_t(t_ray *ray, t_plane *plane)
 
 double	ray_cylinder_t(t_ray *ray, t_cylinder *cylinder)
 {
-	double	a;
-	double	b;
-	double	c;
+	t_vec	a;
 	double	t_value[2];
 	double	d;
 
-	ray_cylinder_quad(ray, cylinder, &a, &b, &c);
-	if ((c = b * b - 4 * a * c) <= 0)
+	ray_cylinder_quad(ray, cylinder, &a);
+	if ((a.z = a.y * a.y - 4 * a.x * a.z) <= 0)
 		return (__DBL_MAX__);
-	if (a == 0)
+	if (a.x == 0)
 		return (__DBL_MAX__);
-	t_value[0] = (-b - sqrt(c)) / (2 * a);
-	t_value[1] = (-b + sqrt(c)) / (2 * a);
+	t_value[0] = (-a.y - sqrt(a.z)) / (2 * a.x);
+	t_value[1] = (-a.y + sqrt(a.z)) / (2 * a.x);
 	d = v_dot(v_sub(ray_point(ray, t_value[0]), cylinder->center), \
 			cylinder->ori_v);
 	if (d >= cylinder->height || d <= 0)

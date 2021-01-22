@@ -6,7 +6,7 @@
 /*   By: jolim <jolim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 21:43:53 by jolim             #+#    #+#             */
-/*   Updated: 2021/01/22 15:01:32 by jolim            ###   ########.fr       */
+/*   Updated: 2021/01/22 17:58:49 by jolim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -287,7 +287,7 @@ double					ray_square_t(t_ray *ray, t_square *square);
 double					ray_triangle_t(t_ray *ray, t_triangle *triangle);
 
 double					ray_cylinder_quad(t_ray *ray, t_cylinder *cylinder, \
-		double *a, double *b, double *c);
+		t_vec *a);
 double					ray_sq_plane_t(t_ray *ray, t_square *square);
 double					ray_cylinder_cap_t(t_ray *ray, t_cylinder *cylinder);
 double					ray_cylinder_shadow(t_ray *ray, t_cylinder *cylinder);
