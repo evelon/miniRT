@@ -6,16 +6,11 @@
 /*   By: jolim <jolim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:02:16 by jolim             #+#    #+#             */
-/*   Updated: 2021/01/22 18:04:14 by jolim            ###   ########.fr       */
+/*   Updated: 2021/01/22 18:16:21 by jolim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
-
-static t_vec	paint_bg(void)
-{
-	return (v_new(0.5, 0.7, 1.0));
-}
 
 static t_ray	*new_ray_cam(int i, int j)
 {
@@ -38,31 +33,26 @@ static t_ray	*new_ray_cam(int i, int j)
 static t_vec	trace_ray(t_ray *ray)
 {
 	t_hit_point	*hit;
-	t_vec		diff_color;
-	t_vec		spec_color;
+	t_vec		sp_df_color;
 	t_vec		v_color_sum;
 	t_light_lst	*light;
 
 	hit = hit_object(ray);
 	if (hit->t_value == __DBL_MAX__)
-		return (paint_bg());
-	diff_color = v_new(0, 0, 0);
-	spec_color = v_new(0, 0, 0);
+		return (v_new(0.5, 0.7, 1.0));
+	sp_df_color = v_new(0, 0, 0);
 	light = g_scene->light_head;
 	while (light != NULL)
 	{
 		set_hit(hit, light);
 		if (!ray_shadow(hit, light))
-		{
-			spec_color = v_add(spec_color, v_mul(color_to_vec(light->color), \
-					hit_specular(hit, light)));
-			diff_color = v_add(diff_color, hit_diffuse(hit, light));
-		}
+			sp_df_color = v_add(v_add(sp_df_color, \
+v_mul(color_to_vec(light->color), hit_specular(hit, light))), \
+v_add(sp_df_color, hit_diffuse(hit, light)));
 		light = light->next;
 	}
-	v_color_sum = v_mul(color_to_vec(g_ambient->color), g_ambient->ratio);
-	v_color_sum = v_max(v_blend(v_color_sum, hit->v_color), \
-			v_add(spec_color, diff_color));
+	v_color_sum = v_max(v_blend(v_mul(color_to_vec(g_ambient->color), \
+			g_ambient->ratio), hit->v_color), sp_df_color);
 	free(hit);
 	return (v_cap(v_color_sum));
 }
