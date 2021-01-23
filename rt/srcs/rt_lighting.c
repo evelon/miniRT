@@ -6,7 +6,7 @@
 /*   By: jolim <jolim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 18:34:17 by jolim             #+#    #+#             */
-/*   Updated: 2021/01/22 14:19:13 by jolim            ###   ########.fr       */
+/*   Updated: 2021/01/23 11:49:02 by jolim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_vec	hit_diffuse(t_hit_point *hit, t_light_lst *light)
 	intensity = v_cos(hit->vec_light, hit->vec_normal);
 	if (intensity < 0)
 		intensity = 0;
+	intensity = intensity * light->brightness;
 	v_color = v_blend(hit->v_color, v_mul(color_to_vec(light->color), \
 			intensity));
 	return (v_color);

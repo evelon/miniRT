@@ -8,7 +8,7 @@ ARFLAGS = rcsv
 CFLAGS = -Wall -Werror -Wextra
 LFLAGS = $(addprefix -l, $(DIRS))
 
-NAME = rt.out
+NAME = miniRT
 
 RT = rt
 LIBFT = libft
