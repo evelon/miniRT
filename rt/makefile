@@ -6,7 +6,7 @@
 #    By: jolim <jolim@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/07 14:55:13 by jolim             #+#    #+#              #
-#    Updated: 2021/01/22 15:02:55 by jolim            ###   ########.fr        #
+#    Updated: 2021/01/24 16:33:13 by jolim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ AR = ar
 ARFLAGS = rcsv
 
 CFLAGS = -Wall -Werror -Wextra
+SAN = -g3 -fsanitize=address
 
 NAME = ../librt.a
 
@@ -54,7 +55,7 @@ $(NAME): $(OBJS)
 	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 
 objects/%o : srcs/%c
-	$(CC) $(CFLAGS) -g3 -fsanitize=address -o $@ -c $^
+	$(CC) $(CFLAGS) $(SAN) -o $@ -c $^
 
 clean:
 	rm -rf $(OBJS)

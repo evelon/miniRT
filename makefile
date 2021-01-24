@@ -1,4 +1,4 @@
-.DEFAULT_GOAL := help
+.DEFAULT_GOAL := all
 .PHONY: clean fclean all re test
 
 CC = gcc
@@ -6,6 +6,7 @@ AR = ar
 ARFLAGS = rcsv
 
 CFLAGS = -Wall -Werror -Wextra
+SAN = -g3 -fsanitize=address
 LFLAGS = $(addprefix -l, $(DIRS))
 
 NAME = miniRT
@@ -20,7 +21,7 @@ all: ## run makefile
 	make -C ./libft
 	make -C ./get_next_line
 	make -C ./rt
-	$(CC) $(CFLAGS) -g3 -fsanitize=address -lmlx -framework OpenGL -framework AppKit -L. $(LFLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(SAN) -lmlx -framework OpenGL -framework AppKit -L. $(LFLAGS) -o $(NAME)
 
 clean: ## delete all files made by makefile except for the executable
 	make -C ./$(RT) fclean
